@@ -78,7 +78,6 @@ struct MessageView: View, Equatable {
                 if MessageView.defaultTypes.contains(message.type) {
                     if !shrunk {
                         UserAvatarView(user: message.author, guildID: serverCtx.guild!.id, webhookID: message.webhook_id)
-							.equatable()
                     } else {
 						Text(message.timestamp, style: .time)
                             .font(.system(size: 8, weight: .semibold, design: .monospaced))
@@ -88,7 +87,7 @@ struct MessageView: View, Equatable {
 					VStack(alignment: .leading, spacing: Self.lineSpacing) {
                         if !shrunk {
                             HStack(spacing: 6) {
-                                Text(message.member?.nick ?? message.author.username)
+                                Text(message.member?.nick ?? message.author.displayName)
                                     .font(.system(size: 15))
                                     .fontWeight(.medium)
 								if message.author.bot ?? false || message.webhook_id != nil {
